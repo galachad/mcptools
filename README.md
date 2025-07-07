@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mcptools <a href="https://simonpcouch.github.io/mcptools/"><img src="man/figures/logo.png" align="right" height="240" alt="A hexagonal logo showing a sparse, forested path opening up into a well-trodden meadow path." /></a>
+# mcptools <a href="https://posit-dev.github.io/mcptools/"><img src="man/figures/logo.png" align="right" height="240" alt="A hexagonal logo showing a bridge connecting two portions of a forested meadow." /></a>
 
 <!-- badges: start -->
 

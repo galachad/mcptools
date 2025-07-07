@@ -52,7 +52,7 @@ While a single client (and potentially a single R session) probably covers many 
 
 ## Custom tools
 
-By default, mcptools supplies clients with only the necessary infrastructural tools to implement interaction with active sessions. You may be interested in using mcptools via [btw's wrappers](https://posit-dev.github.io/btw), which provide a set of atomic tools for data science. These tools allow clients to:
+By default, mcptools supplies clients with only the necessary infrastructural tools to implement interaction with active sessions. You may be interested in using mcptools via [btw's wrappers](https://posit-dev.github.io/btw/), which provide a set of atomic tools for data science. These tools allow clients to:
 
 -   Peruse package documentation
 
