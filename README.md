@@ -123,20 +123,15 @@ directly to the `$set_tools()` method from ellmer:
 
 In Claude Desktop, I’ll write the following:
 
-> Using the R packages I have installed, write code to download data on
-> flights in/out of Chicago airports in 2024.
+> “From what year is the earliest recorded sample in the `forested` data
+> in my Positron session?”
 
-In a typical chat interface, I’d be wary of two failure points here:
+Without mcptools, Claude couldn’t get far here; by default, it can’t run
+R code and doesn’t have any way to “speak to” my active R sessions.
 
-1)  The model doesn’t know which packages I have installed.
-2)  If the model correctly guesses which packages I have installed,
-    there may not be enough information about how to *use* the packages
-    baked into its weights to write correct code.
+<img src="https://github.com/user-attachments/assets/04ae03d1-1918-4597-9166-9355bdab9509" alt="A screencast of a chat with Claude. After the question is asked, a tool called 'describe data frame' is called with the `data_frame` argument set to `forested`. The results are returned from mcptools as json, which the model then integrates into its response: 'Based on the data structure, I can see there's a `year` column with values ranfing from 1995 to 2024. The earliest recorded sample in the `forested` data is from 1995.'" width="100%" />
 
-<img src="https://github.com/user-attachments/assets/821ea3d6-4e30-46d6-ab9b-301276af2c35" alt="A screencast of a chat with Claude. I ask 'Using the R packages I have installed, write code to download data on flights in/out of Chicago airports in 2024.' and, after searching through the documentation of my currently installed R packages, Claude writes R code to do so." width="100%" />
-
-Through first searching through my installed packages, Claude can locate
-the anyflights package, which seems like a reasonable solution. The
-model then discovers the package’s `anyflights()` function and reads its
-documentation, and can pattern-match from there to write the correct
-code.
+Using the package, the model asks to describe the data frame using a
+structure that will show summary statistics from the data. mcptools will
+appropriately route the request to the open Positron session, forwarding
+the results back to the model for it to situate in a response.
