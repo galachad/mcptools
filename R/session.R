@@ -36,6 +36,10 @@
 #' `usethis::edit_r_profile()`, to make every interactive R session you start
 #' available to the server.
 #'
+#' On Windows, you may need to configure the full path to the Rscript executable.
+#' Examples for Claude Code on WSL and Claude Desktop on Windows are shown
+#' at <https://github.com/posit-dev/mcptools/issues/41#issuecomment-3036617046>.
+#'
 #' @seealso
 #' - The "R as an MCP server" vignette at
 #' `vignette("server", package = "mcptools")` delves into further detail

@@ -51,6 +51,10 @@ The server interfaces with the MCP client on behalf of your R session.
 Place a call to \code{mcptools::mcp_session()} in your \code{.Rprofile}, perhaps with
 \code{usethis::edit_r_profile()}, to make every interactive R session you start
 available to the server.
+
+On Windows, you may need to configure the full path to the Rscript executable.
+Examples for Claude Code on WSL and Claude Desktop on Windows are shown
+at \url{https://github.com/posit-dev/mcptools/issues/41#issuecomment-3036617046}.
 }
 
 \examples{
