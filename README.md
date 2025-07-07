@@ -129,7 +129,7 @@ In Claude Desktop, I’ll write the following:
 Without mcptools, Claude couldn’t get far here; by default, it can’t run
 R code and doesn’t have any way to “speak to” my active R sessions.
 
-<img src="https://github.com/user-attachments/assets/04ae03d1-1918-4597-9166-9355bdab9509" alt="A screencast of a chat with Claude. After the question is asked, a tool called 'describe data frame' is called with the `data_frame` argument set to `forested`. The results are returned from mcptools as json, which the model then integrates into its response: 'Based on the data structure, I can see there's a `year` column with values ranfing from 1995 to 2024. The earliest recorded sample in the `forested` data is from 1995.'" width="100%" />
+<img src="https://github.com/user-attachments/assets/064df664-2669-498e-a644-fb191a30235f" alt="A screencast of a chat with Claude. After the question is asked, a tool called 'describe data frame' is called with the `data_frame` argument set to `forested`. The results are returned from mcptools as json, which the model then integrates into its response: 'Based on the data structure, I can see there's a `year` column with values ranfing from 1995 to 2024. The earliest recorded sample in the `forested` data is from 1995.'" width="100%" />
 
 Using the package, the model asks to describe the data frame using a
 structure that will show summary statistics from the data. mcptools will
