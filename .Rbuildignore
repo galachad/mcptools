@@ -12,3 +12,4 @@ inst/hex
 ^\.vscode$
 .claude/
 CLAUDE.md
+inst/diagrams.key
