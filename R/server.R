@@ -11,7 +11,7 @@
 #' available from the server or a file path to an .R file that, when sourced,
 #' will return a list of tools. Any list that could be passed to
 #' `Chat$set_tools()` can be passed here. By default, the package won't serve
-#' any tools other than those needed to communicate with active R sessions.
+#' any tools other than those needed to communicate with interactive R sessions.
 #'
 #' @rdname server
 #' @export

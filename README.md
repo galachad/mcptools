@@ -18,7 +18,7 @@ mcptools:
 
 **R as an MCP server**:
 
-<img src="man/figures/r_as_a_server.png" alt="A system architecture diagram showing three main components: Client (left), Server (center), and Session (right). The Client box lists AI coding assistants including Claude Desktop, Claude Code, Copilot Chat in VS Code, and Positron Assistant. The Server is initiated with `mcp_server()` and contains tools for R functions like reading package documentation, running R code, and inspecting global environment objects. Sessions can be configured with `mcp_session()` and can optionally connect to active R sessions, with two example projects shown: 'Some R Project' and 'Other R Project'." width="100%" />
+<img src="man/figures/r_as_a_server.png" alt="A system architecture diagram showing three main components: Client (left), Server (center), and Session (right). The Client box lists AI coding assistants including Claude Desktop, Claude Code, Copilot Chat in VS Code, and Positron Assistant. The Server is initiated with `mcp_server()` and contains tools for R functions like reading package documentation, running R code, and inspecting global environment objects. Sessions can be configured with `mcp_session()` and can optionally connect to interactive R sessions, with two example projects shown: 'Some R Project' and 'Other R Project'." width="100%" />
 
 When configured with mcptools, MCP-enabled tools like Claude Desktop,
 Claude Code, and VS Code GitHub Copilot can run R code *in the sessions
@@ -134,7 +134,7 @@ In Claude Desktop, I’ll write the following:
 > in my Positron session?”
 
 Without mcptools, Claude couldn’t get far here; by default, it can’t run
-R code and doesn’t have any way to “speak to” my active R sessions.
+R code and doesn’t have any way to “speak to” my interactive R sessions.
 
 <img src="https://github.com/user-attachments/assets/064df664-2669-498e-a644-fb191a30235f" alt="A screencast of a chat with Claude. After the question is asked, a tool called 'describe data frame' is called with the `data_frame` argument set to `forested`. The results are returned from mcptools as json, which the model then integrates into its response: 'Based on the data structure, I can see there's a `year` column with values ranfing from 1995 to 2024. The earliest recorded sample in the `forested` data is from 1995.'" width="100%" />
 

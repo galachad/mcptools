@@ -29,7 +29,7 @@ In the context of R as an MCP server, there are three main concepts to understan
 ```{r}
 #| label: r-as-a-server
 #| echo: false
-#| fig-alt: "A system architecture diagram showing three main components: Client (left), Server (center), and Session (right). The Client box lists AI coding assistants including Claude Desktop, Claude Code, Copilot Chat in VS Code, and Positron Assistant. The Server is initiated with `mcp_server()` and contains tools for R functions like reading package documentation, running R code, and inspecting global environment objects. Sessions can be configured with `mcp_session()` and can optionally connect to active R sessions, with two example projects shown: 'Some R Project' and 'Other R Project'."
+#| fig-alt: "A system architecture diagram showing three main components: Client (left), Server (center), and Session (right). The Client box lists AI coding assistants including Claude Desktop, Claude Code, Copilot Chat in VS Code, and Positron Assistant. The Server is initiated with `mcp_server()` and contains tools for R functions like reading package documentation, running R code, and inspecting global environment objects. Sessions can be configured with `mcp_session()` and can optionally connect to interactive R sessions, with two example projects shown: 'Some R Project' and 'Other R Project'."
 knitr::include_graphics("https://raw.githubusercontent.com/posit-dev/mcptools/main/man/figures/r_as_a_server.png")
 ```
 
@@ -41,7 +41,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/posit-dev/mcptools/ma
 
 (In case this caught your eye: yes, the server is itself an R session. In mcptools's documentation, we'll always refer to the server R session just as the server; the fact that it's implemented in R is only a technical detail.)
 
-In the case you have some client that you want to connect to R, **all you need to do is configure the command** `Rscript -e "mcptools::mcp_server()"` according to your client's instructions. Optionally, if you'd like the server to be able to access variables in active R sessions, add `mcptools::mcp_session()` to your `.Rprofile`, perhaps by first calling `usethis::edit_r_profile()`.
+In the case you have some client that you want to connect to R, **all you need to do is configure the command** `Rscript -e "mcptools::mcp_server()"` according to your client's instructions. Optionally, if you'd like the server to be able to access variables in interactive R sessions, add `mcptools::mcp_session()` to your `.Rprofile`, perhaps by first calling `usethis::edit_r_profile()`.
 
 Then, you're good to go!
 
