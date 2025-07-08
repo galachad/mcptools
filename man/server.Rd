@@ -18,8 +18,9 @@ will return a list of tools. Any list that could be passed to
 any tools other than those needed to communicate with interactive R sessions.}
 }
 \description{
-Together, these functions implement a model context protocol server for your
-R session.
+\code{mcp_server()} implements a model context protocol server with arbitrary
+R functions as its tools. Optionally, calling \code{mcp_session()} in an
+interactive R session allows those tools to execute inside of that session.
 }
 \section{Configuration}{
 
@@ -46,8 +47,9 @@ Or, to use with Claude Code, you might type in a terminal:
 
 \strong{mcp_server() is not intended for interactive use.}
 
-The server interfaces with the MCP client on behalf of your R session.
-\strong{Use \code{\link[=mcp_session]{mcp_session()}} to make your R session available to the server.}
+The server interfaces with the MCP client. If you'd like tools to have access
+to variables inside of an interactive R session, call
+\code{mcp_session()} to make your R session available to the server.
 Place a call to \code{mcptools::mcp_session()} in your \code{.Rprofile}, perhaps with
 \code{usethis::edit_r_profile()}, to make every interactive R session you start
 available to the server.

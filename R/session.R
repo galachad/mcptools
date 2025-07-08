@@ -1,8 +1,9 @@
 #' R as a server: Configure R-based tools with LLM-enabled apps
 #'
 #' @description
-#' Together, these functions implement a model context protocol server for your
-#' R session.
+#' `mcp_server()` implements a model context protocol server with arbitrary
+#' R functions as its tools. Optionally, calling `mcp_session()` in an
+#' interactive R session allows those tools to execute inside of that session.
 #'
 #' @section Configuration:
 #'
@@ -30,8 +31,9 @@
 #'
 #' **mcp_server() is not intended for interactive use.**
 #'
-#' The server interfaces with the MCP client on behalf of your R session.
-#' **Use [mcp_session()] to make your R session available to the server.**
+#' The server interfaces with the MCP client. If you'd like tools to have access
+#' to variables inside of an interactive R session, call
+#' `mcp_session()` to make your R session available to the server.
 #' Place a call to `mcptools::mcp_session()` in your `.Rprofile`, perhaps with
 #' `usethis::edit_r_profile()`, to make every interactive R session you start
 #' available to the server.
