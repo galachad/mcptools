@@ -16,24 +16,28 @@ mcptools implements the [Model Context
 Protocol](https://modelcontextprotocol.io/) in R. There are two sides to
 mcptools:
 
-**R as an MCP server**: When configured with mcptools, MCP-enabled tools
-like Claude Desktop, Claude Code, and VS Code GitHub Copilot can run R
-code *in the sessions you have running* to answer your questions. While
-the package supports configuring arbitrary R functions, you may be
-interested in the [btw](https://posit-dev.github.io/btw/) package’s
-integrated support for mcptools, which provides a default set of tools
-to to peruse the documentation of packages you have installed, check out
-the objects in your global environment, and retrieve metadata about your
-session and platform.
+**R as an MCP server**:
 
 <img src="man/figures/r_as_a_server.png" alt="A system architecture diagram showing three main components: Client (left), Server (center), and Session (right). The Client box lists AI coding assistants including Claude Desktop, Claude Code, Copilot Chat in VS Code, and Positron Assistant. The Server is initiated with `mcp_server()` and contains tools for R functions like reading package documentation, running R code, and inspecting global environment objects. Sessions can be configured with `mcp_session()` and can optionally connect to active R sessions, with two example projects shown: 'Some R Project' and 'Other R Project'." width="100%" />
 
-**R as an MCP client**: Register third-party MCP servers with ellmer
-chats to integrate additional context into
-e.g. [shinychat](https://github.com/posit-dev/shinychat) and
-[querychat](https://posit-dev.github.io/querychat/) apps.
+When configured with mcptools, MCP-enabled tools like Claude Desktop,
+Claude Code, and VS Code GitHub Copilot can run R code *in the sessions
+you have running* to answer your questions. While the package supports
+configuring arbitrary R functions, you may be interested in the
+[btw](https://posit-dev.github.io/btw/) package’s integrated support for
+mcptools, which provides a default set of tools to to peruse the
+documentation of packages you have installed, check out the objects in
+your global environment, and retrieve metadata about your session and
+platform.
+
+**R as an MCP client**:
 
 <img src="man/figures/r_as_a_client.png" alt="An architecture diagram showing the Client (left) with R code using the ellmer library to create a chat object and then setting tools from mcp with `mcp_tools()`, and the Server (right) containing third-party tools including GitHub (for reading PRs/Issues), Confluence (for searching), and Google Drive (for searching). Bidirectional arrows indicate communication between the client and server components." width="100%" />
+
+Register third-party MCP servers with ellmer chats to integrate
+additional context into
+e.g. [shinychat](https://github.com/posit-dev/shinychat) and
+[querychat](https://posit-dev.github.io/querychat/) apps.
 
 > NOTE:
 >
