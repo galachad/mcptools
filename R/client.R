@@ -71,6 +71,19 @@ the$mcp_servers <- list()
 #' to the `$set_tools()` method of an [ellmer::Chat] object. If the file at
 #' `config` doesn't exist, an error.
 #'
+#' @examples
+#' # setup
+#' config_file <- tempfile(fileext = "json")
+#' file.create(config_file)
+#'
+#' # usually, `config` would be a persistent, user-level
+#' # configuration file for a set of MCP server
+#' mcp_tools(config = config_file)
+#'
+#' # teardown
+#' file.remove(config_file)
+#'
+#'
 #' @name client
 #' @aliases mcp_client
 #' @export

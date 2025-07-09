@@ -68,6 +68,20 @@ in that file:
 }\if{html}{\out{</div>}}
 }
 
+\examples{
+# setup
+config_file <- tempfile(fileext = "json")
+file.create(config_file)
+
+# usually, `config` would be a persistent, user-level
+# configuration file for a set of MCP server
+mcp_tools(config = config_file)
+
+# teardown
+file.remove(config_file)
+
+
+}
 \seealso{
 This function implements R as an MCP \emph{client}. To use R as an MCP \emph{server},
 i.e. to provide apps like Claude Desktop or Claude Code with access to
