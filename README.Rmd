@@ -64,6 +64,12 @@ e.g. [shinychat](https://github.com/posit-dev/shinychat) and
 
 ## Installation
 
+Install mcptools from CRAN with:
+
+```r
+install.packages("mcptools")
+```
+
 You can install the development version of mcptools like so:
 
 ```r
