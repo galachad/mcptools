@@ -7,14 +7,63 @@
 # function is called in a separate R process and thus isn't picked up by
 # coverage tools
 
+#' R as a server: Configure R-based tools with LLM-enabled apps
+#'
+#' @description
+#' `mcp_server()` implements a model context protocol server with arbitrary
+#' R functions as its tools. Optionally, calling `mcp_session()` in an
+#' interactive R session allows those tools to execute inside of that session.
+#'
+#' @section Configuration:
+#'
+#' [mcp_server()] should be configured with the MCP clients via the `Rscript`
+#' command. For example, to use with Claude Desktop, paste the following in your
+#' Claude Desktop configuration (on macOS, at
+#' `file.edit("~/Library/Application Support/Claude/claude_desktop_config.json")`):
+#'
+#' ```json
+#' {
+#'   "mcpServers": {
+#'     "r-mcptools": {
+#'       "command": "Rscript",
+#'       "args": ["-e", "mcptools::mcp_server()"]
+#'     }
+#'   }
+#' }
+#' ```
+#'
+#' Or, to use with Claude Code, you might type in a terminal:
+#'
+#' ```bash
+#' claude mcp add -s "user" r-mcptools Rscript -e "mcptools::mcp_server()"
+#' ```
+#'
+#' **mcp_server() is not intended for interactive use.**
+#'
+#' The server interfaces with the MCP client. If you'd like tools to have access
+#' to variables inside of an interactive R session, call
+#' `mcp_session()` to make your R session available to the server.
+#' Place a call to `mcptools::mcp_session()` in your `.Rprofile`, perhaps with
+#' `usethis::edit_r_profile()`, to make every interactive R session you start
+#' available to the server.
+#'
+#' On Windows, you may need to configure the full path to the Rscript executable.
+#' Examples for Claude Code on WSL and Claude Desktop on Windows are shown
+#' at <https://github.com/posit-dev/mcptools/issues/41#issuecomment-3036617046>.
+#'
 #' @param tools A list of tools created with [ellmer::tool()] that will be
 #' available from the server or a file path to an .R file that, when sourced,
 #' will return a list of tools. Any list that could be passed to
 #' `Chat$set_tools()` can be passed here. By default, the package won't serve
 #' any tools other than those needed to communicate with interactive R sessions.
 #'
-#' @rdname server
-#' @export
+#' @seealso
+#' - The "R as an MCP server" vignette at
+#' `vignette("server", package = "mcptools")` delves into further detail
+#' on setup and customization.
+#' - These functions implement R as an MCP _server_. To use R as an MCP _client_,
+#' i.e. to configure tools from third-party MCP servers with ellmer chats, see
+#' [mcp_tools()].
 #'
 #' @examples
 #' # should only be run non-interactively, and will block the current R process
@@ -38,6 +87,13 @@
 #'
 #' mcp_server(tools = system.file("example-ellmer-tools.R", package = "mcptools"))
 #' }
+#'
+#' if (interactive()) {
+#'   mcp_session()
+#' }
+#'
+#' @name server
+#' @export
 mcp_server <- function(tools = NULL) {
   # TODO: should this actually be a check for being called within Rscript or not?
   check_not_interactive()
