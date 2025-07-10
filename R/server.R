@@ -228,7 +228,7 @@ forward_request <- function(data) {
 # visible. This function will log output to the `logfile` so that you can view
 # it.
 logcat <- function(x, ..., append = TRUE) {
-  log_file <- mcptools_log_file()
+  log_file <- mcptools_server_log()
   cat(x, "\n", sep = "", append = append, file = log_file)
 }
 

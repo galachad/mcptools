@@ -387,7 +387,7 @@ jsonrpc_id <- function(server_name) {
 # client protocol --------------------------------------------------------------
 ## stdio
 log_cat_client <- function(x, append = TRUE) {
-  log_file <- "~/mcp_client_test.txt"
+  log_file <- mcptools_client_log()
   cat(x, "\n\n", sep = "", append = append, file = log_file)
 }
 
