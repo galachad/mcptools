@@ -2,6 +2,10 @@ test_that("mcp_tools works", {
   skip_if_not_installed("withr")
   skip_if(identical(Sys.getenv("GITHUB_PAT"), ""))
   skip_on_os(c("windows", "mac"))
+  skip_if(
+    identical(unname(Sys.which("docker")), ""),
+    message = "Docker is not installed."
+  )
 
   tmp_file <- withr::local_tempfile()
 
