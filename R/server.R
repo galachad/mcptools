@@ -76,7 +76,7 @@
 #' @examples
 #' # should only be run non-interactively, and will block the current R process
 #' # once called.
-#' if (FALSE) {
+#' if (identical(Sys.getenv("MCPTOOLS_CAN_BLOCK_PROCESS"), "true")) {
 #' # to start a server with a tool to draw numbers from a random normal:
 #' library(ellmer)
 #'
