@@ -4,7 +4,7 @@
 \name{mcptools-package}
 \alias{mcptools}
 \alias{mcptools-package}
-\title{mcptools: 'Model Context Protocol' Servers and Clients}
+\title{mcptools: Model Context Protocol Servers and Clients}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
