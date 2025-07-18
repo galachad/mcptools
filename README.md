@@ -7,8 +7,6 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/mcptools)](https://CRAN.R-project.org/package=mcptools)
 [![R-CMD-check](https://github.com/posit-dev/mcptools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/posit-dev/mcptools/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -49,6 +47,12 @@ e.g. [shinychat](https://github.com/posit-dev/shinychat) and
 > `acquaint::mcp_session()` to `btw::btw_mcp_session()`.
 
 ## Installation
+
+Install mcptools from CRAN with:
+
+``` r
+install.packages("mcptools")
+```
 
 You can install the development version of mcptools like so:
 

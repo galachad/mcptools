@@ -1,5 +1,5 @@
 Package: mcptools
-Title: Model Context Protocol Server For Your R Sessions
+Title: Model Context Protocol Servers and Clients
 Version: 0.0.0.9000
 Authors@R: c(
     person("Simon", "Couch", , "simon.couch@posit.co", role = c("aut", "cre"),
@@ -10,12 +10,13 @@ Authors@R: c(
     person("Posit Software, PBC", role = c("cph", "fnd"),
            comment = c(ROR = "03wc8by49"))
   )
-Description: Implements a model context protocol (MCP) server for your R 
-    sessions, allowing MCP-compatible apps like Claude Desktop and Claude 
-    Code to run R code in your interactive R sessions in order to better answer 
-    questions. By default, the package supplies a set of tools that allow models 
-    to inspect your R environment and peruse package documentation, but 
-    supports arbitrary R functions as tools.
+Description: Implements the Model Context Protocol (MCP). Users can start 
+    'R'-based servers, serving functions as tools for large language models to
+    call before responding to the user in MCP-compatible apps like 
+    'Claude Desktop' and 'Claude Code', with options to run those tools inside 
+    of interactive 'R' sessions. On the  other end, when 'R' is the client via 
+    the 'ellmer' package, users can register tools from third-party MCP 
+    servers to integrate additional context into chats.
 License: MIT + file LICENSE
 Suggests: 
     knitr,

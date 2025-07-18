@@ -17,6 +17,15 @@ will return a list of tools. Any list that could be passed to
 \code{Chat$set_tools()} can be passed here. By default, the package won't serve
 any tools other than those needed to communicate with interactive R sessions.}
 }
+\value{
+\code{mcp_server()} and \code{mcp_session()} are both called primarily for side-effects.
+\itemize{
+\item \code{mcp_server()} blocks the R process it's called in indefinitely and isn't
+intended for interactive use.
+\item \code{mcp_session()} makes the interactive R session it's called in available to
+MCP servers. It returns a promise via \code{\link[promises:promise]{promises::promise()}}.
+}
+}
 \description{
 \code{mcp_server()} implements a model context protocol server with arbitrary
 R functions as its tools. Optionally, calling \code{mcp_session()} in an
@@ -62,7 +71,7 @@ at \url{https://github.com/posit-dev/mcptools/issues/41#issuecomment-3036617046}
 \examples{
 # should only be run non-interactively, and will block the current R process
 # once called.
-if (FALSE) {
+if (identical(Sys.getenv("MCPTOOLS_CAN_BLOCK_PROCESS"), "true")) {
 # to start a server with a tool to draw numbers from a random normal:
 library(ellmer)
 

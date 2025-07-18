@@ -57,6 +57,14 @@
 #' `Chat$set_tools()` can be passed here. By default, the package won't serve
 #' any tools other than those needed to communicate with interactive R sessions.
 #'
+#' @returns
+#' `mcp_server()` and `mcp_session()` are both called primarily for side-effects.
+#'
+#' * `mcp_server()` blocks the R process it's called in indefinitely and isn't
+#'   intended for interactive use.
+#' * `mcp_session()` makes the interactive R session it's called in available to
+#'   MCP servers. It returns a promise via [promises::promise()].
+#'
 #' @seealso
 #' - The "R as an MCP server" vignette at
 #' `vignette("server", package = "mcptools")` delves into further detail
@@ -68,7 +76,7 @@
 #' @examples
 #' # should only be run non-interactively, and will block the current R process
 #' # once called.
-#' if (FALSE) {
+#' if (identical(Sys.getenv("MCPTOOLS_CAN_BLOCK_PROCESS"), "true")) {
 #' # to start a server with a tool to draw numbers from a random normal:
 #' library(ellmer)
 #'
@@ -220,7 +228,7 @@ forward_request <- function(data) {
 # visible. This function will log output to the `logfile` so that you can view
 # it.
 logcat <- function(x, ..., append = TRUE) {
-  log_file <- mcptools_log_file()
+  log_file <- mcptools_server_log()
   cat(x, "\n", sep = "", append = append, file = log_file)
 }
 

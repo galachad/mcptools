@@ -1,5 +1,7 @@
-## R CMD check results
+**Comments for CRAN team**:
 
-0 errors | 0 warnings | 1 note
+There's a NOTE since this is an initial release.
 
-* This is a new release.
+There are not references describing the methods in this package to cite in the Description field.
+
+This is a **resubmission**; the first submission of the package was rejected due to the name of the protocol being single-quoted in the Description field an example's execution being wrapped in `if (FALSE)`. Note that there's now a new NOTE "Possibly misspelled words in DESCRIPTION" because of this change. Thank you for the feedback—both of these issues have been addressed.
