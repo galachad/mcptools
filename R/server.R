@@ -51,11 +51,14 @@
 #' Examples for Claude Code on WSL and Claude Desktop on Windows are shown
 #' at <https://github.com/posit-dev/mcptools/issues/41#issuecomment-3036617046>.
 #'
-#' @param tools A list of tools created with [ellmer::tool()] that will be
-#' available from the server or a file path to an .R file that, when sourced,
-#' will return a list of tools. Any list that could be passed to
-#' `Chat$set_tools()` can be passed here. By default, the package won't serve
-#' any tools other than those needed to communicate with interactive R sessions.
+#' @param tools Optional collection of tools to expose. Supply either a list
+#'   of objects created by [ellmer::tool()] or a path to an `.R` file that,
+#'   when sourced, yields such a list. Defaults to `NULL`, which serves only
+#'   the built-in session tools when `session_tools` is `TRUE`.
+#' @param ... Reserved for future use; currently ignored.
+#' @param session_tools Logical value whether to include the built-in session
+#'   tools (`list_r_sessions`, `select_r_session`) that work with
+#'   `mcp_session()`. Defaults to `TRUE`.
 #'
 #' @returns
 #' `mcp_server()` and `mcp_session()` are both called primarily for side-effects.
@@ -102,21 +105,32 @@
 #'
 #' @name server
 #' @export
-mcp_server <- function(tools = NULL) {
+mcp_server <- function(tools = NULL, ..., session_tools = TRUE) {
   # TODO: should this actually be a check for being called within Rscript or not?
   check_not_interactive()
-  set_server_tools(tools)
+  the$sessions_enabled <- isTRUE(session_tools)
+  set_server_tools(tools, session_tools = the$sessions_enabled)
 
   cv <- nanonext::cv()
+
   reader_socket <- nanonext::read_stdin()
   on.exit(nanonext::reap(reader_socket))
   nanonext::pipe_notify(reader_socket, cv, remove = TRUE, flag = TRUE)
+  client <- nanonext::recv_aio(reader_socket, mode = "string", cv = cv)
+
+  if (!the$sessions_enabled) {
+    while (nanonext::wait(cv)) {
+      if (!nanonext::unresolved(client)) {
+        handle_message_from_client(client$data)
+        client <- nanonext::recv_aio(reader_socket, mode = "string", cv = cv)
+      }
+    }
+    return()
+  }
 
   the$server_socket <- nanonext::socket("poly")
   on.exit(nanonext::reap(the$server_socket), add = TRUE)
   nanonext::dial(the$server_socket, url = sprintf("%s%d", the$socket_url, 1L))
-
-  client <- nanonext::recv_aio(reader_socket, mode = "string", cv = cv)
   session <- nanonext::recv_aio(the$server_socket, mode = "string", cv = cv)
 
   while (nanonext::wait(cv)) {
@@ -178,10 +192,11 @@ handle_message_from_client <- function(line) {
   } else if (data$method == "tools/call") {
     tool_name <- data$params$name
     if (
-      # two tools provided by mcptools itself which must be executed in
-      # the server rather than a session (#18)
-      tool_name %in%
-        c("list_r_sessions", "select_r_session") ||
+      !the$sessions_enabled ||
+        # two tools provided by mcptools itself which must be executed in
+        # the server rather than a session (#18)
+        tool_name %in% c("list_r_sessions", "select_r_session") ||
+        # when session handling is disabled, never forward to sessions
         # with no sessions available, just execute tools in the server (#36)
         !nanonext::stat(the$server_socket, "pipes")
     ) {
