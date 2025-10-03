@@ -109,8 +109,9 @@
 #' @name server
 #' @export
 mcp_server <- function(tools = NULL, ..., session_tools = TRUE) {
-  # TODO: should this actually be a check for being called within Rscript or not?
+
   check_not_interactive()
+  nanonext::reap(the$session_socket) # in case session was started in .Rprofile
   the$sessions_enabled <- isTRUE(session_tools)
   set_server_tools(tools, session_tools = the$sessions_enabled)
 
